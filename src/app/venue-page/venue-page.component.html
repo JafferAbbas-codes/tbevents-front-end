@@ -1,0 +1,264 @@
+<app-navbar></app-navbar>
+<!-- <app-carousel></app-carousel> -->
+<div class="space-top">
+    <div class="container">
+        <!-- <p class="mt-2">venue-page works!</p> -->
+
+        <div class="row">
+            <div class="col-md-8">
+
+                <div class="mb-4">
+                    <div class="d-flex flex-row">
+                        <i class="fas fa-warehouse mr-3" style="color:#a52c2c;font-size: 2.8rem;"></i>
+
+                        <div class="d-flex flex-row align-items-baseline justify-content-between w-100">
+                            <div class="">
+                                <h1 class="display-5 align-items-baseline"><span class="venue-name">
+                                        {{this.venue.name}}</span></h1>
+                            </div>
+                            <!-- <button mdbRipple type="button" class="btn btn-primary btn-rounded">Primary</button> -->
+
+                            <div class="d-flex flex-row align-items-center justify-content-end book-now-container">
+                                <div id="arrowAnim">
+                                    <div class="arrowSliding">
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <div class="arrowSliding delay1">
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <div class="arrowSliding delay2">
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <div class="arrowSliding delay3">
+                                        <div class="arrow"></div>
+                                    </div>
+                                </div>
+                                <button mdbRipple type="button" [routerLink]="['/venue/book',venue.id]"
+                                    [state]="{ id:venue.id }" class="btn rounded-pill btn-lg btn-color">Book
+                                    Now</button>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                    <p class="text-bigger mb-1"><i style="color:#d34a3e" class="fas fa-map-marker-alt mr-1"></i> <span
+                            id="ContentPlaceHolder1_address" style="font-size:Large;">{{this.venue.area}},
+                            {{this.venue.city}},
+                            {{this.venue.country}}</span></p>
+                    <!-- <ul class="list list-inline text-small"> -->
+
+                    <!-- <li class="text-bigger"> -->
+                    <div class="d-flex flex-row justify-content-start align-items-center">
+                        <div class="mr-3">
+                            <i class="fas fa-globe-americas mr-1" style="color: #385E0F;"></i>
+                            <span id="ContentPlaceHolder1_website">{{venue.website}}</span>
+                        </div>
+
+                        <div class="mr-3">
+                            <i class="fa fa-phone mr-1" style="color: #C76114;"></i> <span
+                                id="ContentPlaceHolder1_contact">{{venue.contact}}</span>
+                        </div>
+                        <div class="mr-3">
+                            <i style="color:#845422" class="fas fa-users mr-1"></i> <span
+                                id="ContentPlaceHolder1_capacity">{{this.venue.min_cap}}
+                                to
+                                {{this.venue.max_cap}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="about">About the Venue</h4>
+                <p>
+                </p>
+                <p class="mb-4">{{venue.desc}} </p>
+                <h2 style="color: #4e0000c2" class="mb-2">
+                    {{venue.name}} Facilities:
+                </h2>
+                <table class="table">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                        <tr class="warning">
+                        </tr>
+                        <tr class="warning">
+                            <td>
+                                <ul>
+                                    <li>Halls Timings are 8:30 pm to 12:30 am, sharp
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr class="warning">
+                            <td>
+                                <ul>
+                                    <li>Halls Capacity is up to 500 persons
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr class="warning">
+                            <td>
+                                <ul>
+                                    <li>Fully carpeted dining area.
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr class="warning">
+                            <td>
+                                <ul>
+                                    <li>Tiles walkway with LED and artificial flower stands on sides.
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr class="warning">
+                            <td>
+                                <ul>
+                                    <li>4 sofa sets with center table and side lamps
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr class="warning">
+                            <td>
+                                <ul>
+                                    <li>Square table with center lamps.
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr class="warning">
+                            <td>
+                                <ul>
+                                    <li>50 Acrylic chairs.
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr class="warning">
+                            <td>
+                                <ul>
+                                    <li>2 VIP waiters for VIP table service.
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr class="warning">
+                            <td>
+                                <ul>
+                                    <li>Fully Air conditioned.
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr class="warning">
+                            <td>
+                                <ul>
+                                    <li>Leather Back chairs and red Iron chairs
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr class="warning">
+                            <td>
+                                <ul>
+                                    <li>Glass top dining table for VIP guest
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr class="warning">
+                            <td>
+                                <ul>
+                                    <li>Long back wooden chairs for VIP dinning
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr class="warning">
+                            <td>
+                                <ul>
+                                    <li>Segregation (Complementary)
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                        <tr class="warning">
+                            <td>
+                                <ul>
+                                    <li>Darbar (Complementary)
+                                    </li>
+                                </ul>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p></p>
+            </div>
+            <div class="col-md-4">
+                <div class="ml20">
+                    <div id="ContentPlaceHolder1_UpdatePanel1">
+
+                        <h4 class="lh1em"></h4>
+                        <!-- <a href="http://www.venuebazaar.pk/Best-Caterers-In-Karachi.aspx">
+                            <img class="img-responsive mb-3" src="../../assets/images/others/3.jfif" alt="Caterers-In-Karachi">
+                        </a> -->
+                        <div *ngIf="!!venue.hallImages; then thenBlock"></div>
+                        <ng-template #thenBlock>
+                            <mdb-carousel class="mb-3" [controls]="true" [animation]="'fade'" #carousel>
+                                <mdb-carousel-item *ngFor="let image of venue.hallImages;let i = index"
+                                    [attr.data-index]="i" [interval]="1500">
+                                    <div class="img-container">
+                                        <img src="../../assets{{image}}"
+                                            onerror="this.src='../../assets/images/others/wedding-halls-2.jpg';"
+                                            class="d-block" alt="..."
+                                            style="object-fit:fill; width:100%; height:300px;">
+                                    </div>
+
+                                </mdb-carousel-item>
+                            </mdb-carousel>
+                        </ng-template>
+                        <div class="mb-3">
+                            <h5 class="lh1em">Min-Rent <span class="text-bigger"> <span
+                                        id="ContentPlaceHolder1_rent">{{this.venue.min_rent}}</span></span><small>
+                                    /pkr</small></h5>
+
+                            <h5 class="lh1em">Max-Rent <span class="text-bigger"> <span
+                                        id="ContentPlaceHolder1_perhead">{{this.venue.max_rent}}</span></span><small><span
+                                        id="ContentPlaceHolder1_pkr">/pkr</span> </small></h5>
+                        </div>
+
+                        <a class="btn availability-btn"
+                            href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$LinkButton1','')"><span
+                                aria-hidden="true" class="fa fa-calendar mr-2"></span>Check Availablity</a><small> Red
+                            Color
+                            Dates are Booked </small>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-footer></app-footer>

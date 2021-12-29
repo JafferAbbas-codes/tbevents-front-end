@@ -1,0 +1,11 @@
+<mdb-carousel class="top" [controls]="true" [indicators]="true" [animation]="'fade'">
+  <mdb-carousel-item *ngFor="let item of carouselItems" style="height: 430px;">
+    <img src={{item.url}} class="d-block w-100" alt="..." style="height:100%;filter: brightness(0.5);">
+    <div class="carousel-caption d-none d-md-block">
+      <h5>{{item.label}}</h5>
+      <p class="blockqoute"><cite>{{item.text}}</cite></p>
+    </div>
+  </mdb-carousel-item>
+
+
+</mdb-carousel>

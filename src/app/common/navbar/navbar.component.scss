@@ -1,0 +1,107 @@
+::ng-deep .mat-toolbar-row,
+.mat-toolbar-single-row {
+  height: 73px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.spacer {
+  margin-left: 30px;
+}
+span + span {
+  margin-left: 10px;
+}
+
+.logo {
+  // float: left;
+  // margin-left: 10px;
+  width: 140px;
+  height: 55px;
+}
+.navbar-align {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  // align-content: center;
+  margin-top: 8px;
+  // align-items: stretch;
+}
+.login-button-alignment {
+  text-align: center;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.login-icon {
+  margin-right: 13px;
+  margin-left: 13px;
+  font-size: 34px;
+  color: #cc1d29;
+}
+.login-text {
+  font-size: 17px;
+  color: #cc1d29;
+}
+
+.login-icon:hover {
+  cursor: pointer;
+  color: #d10015;
+}
+
+.login-text:hover {
+  cursor: pointer;
+  color: #d10015;
+}
+
+::ng-deep .navbar {
+  padding: 0 !important;
+}
+
+.navbar-tab-item {
+  margin-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+}
+.navbar-tab-item:hover {
+  background-color: #660404;
+  color: white !important;
+  a {
+    color: inherit !important;
+  }
+}
+
+a {
+  text-decoration: none !important;
+}
+li a {
+  color: #969696;
+  font-weight: 500;
+}
+
+// .nav-item > .active {
+//   background-color: #660404 !important;
+// }
+// .nav-item > .active {
+//   // background-color: #660404 !important;
+//   color: white !important;
+// }
+.active {
+  background-color: #660404 !important;
+  a {
+    color: white !important;
+  }
+}
+// .navbar-tab-item > a:hover {
+//   color: aqua !important;
+// }
+// #000000a8

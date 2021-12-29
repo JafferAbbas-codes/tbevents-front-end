@@ -1,0 +1,191 @@
+<app-navbar></app-navbar>
+<div class="space-top">
+    <div class="container-xl">
+        <div>
+            <div class="d-flex flex-row justify-content-center">
+                <i class="fas fa-warehouse mr-3" style="color:#a52c2c;font-size: 2.8rem;"></i>
+                <h1 class="display-5 venue-name d-flex flex-row align-items-baseline"><span>
+                        {{this.venue.name}}</span></h1>
+            </div>
+            <p class="text-bigger mb-1 text-center"><i style="color:#d34a3e" class="fas fa-map-marker-alt mr-1"></i>
+                <span id="ContentPlaceHolder1_address" style="font-size:Large;">{{this.venue.area}},
+                    {{this.venue.city}},
+                    {{this.venue.country}}</span>
+            </p>
+            <div class="d-flex flex-row justify-content-center align-items-center">
+                <div class="mr-3">
+                    <i class="fas fa-globe-americas mr-1" style="color: #385E0F;"></i>
+                    <span id="ContentPlaceHolder1_website">{{venue.website}}</span>
+                </div>
+
+                <div class="mr-3">
+                    <i class="fa fa-phone mr-1" style="color: #C76114;"></i> <span
+                        id="ContentPlaceHolder1_contact">{{venue.contact}}</span>
+                </div>
+                <div class="mr-3">
+                    <i style="color:#845422" class="fas fa-users mr-1"></i> <span>{{this.venue.min_cap}}
+                        to
+                        {{this.venue.max_cap}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col-md-6 p-4">
+                <div *ngIf="!!venue.hallImages; then thenBlock"></div>
+                <ng-template #thenBlock>
+                    <mdb-carousel [controls]="true" [animation]="'fade'" #carousel>
+                        <mdb-carousel-item *ngFor="let image of venue.hallImages;let i = index" [attr.data-index]="i"
+                            [interval]="1500">
+                            <img src="../../assets{{image}}"
+                                onerror="this.src='../../assets/images/others/wedding-halls-2.jpg';" class="d-block"
+                                alt="..." style="object-fit:fill; border-radius:5px; width:100%; height:360px;">
+                        </mdb-carousel-item>
+                    </mdb-carousel>
+                </ng-template>
+
+            </div>
+            <div class="col-md-6 py-4 px-0">
+                <h4 style="color: green;font-weight: bold;font-family: myfont">Get Instant Quote &amp;
+                    Availabilty</h4>
+                <mat-stepper class="example-stepper" [orientation]="(stepperOrientation | async)!"
+                    (selectionChange)="stepClick($event)" [linear]="true" #stepper>
+                    <mat-step [stepControl]="firstFormGroup" label="Personal Info">
+                        <form [formGroup]="firstFormGroup">
+                            <div class="d-flex flex-row justify-content-start flex-wrap">
+                                <mat-form-field class="flex-grow-1" style="width:150px;padding-right:5px;"
+                                    floatLabel="always" appearance="outline">
+                                    <mat-label>Phone Number</mat-label>
+                                    <input matInput id="phone" type='number' maxlength="11" placeholder="03362032476"
+                                        formControlName="phoneNumber" required>
+                                    <mat-error *ngIf="this.firstFormGroup.controls.phoneNumber.hasError('required')">
+                                        Required*
+                                    </mat-error>
+
+                                    <mat-error *ngIf="this.firstFormGroup.controls.phoneNumber.hasError('minLength')">
+                                        Length must be 11 digits
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field class="flex-grow-1" style="width:270px;" floatLabel="always"
+                                    appearance="outline">
+                                    <mat-label>Your address</mat-label>
+                                    <input maxlength="10" matInput placeholder="R-691 Block 20, F.B Area, Karachi"
+                                        formControlName="address" required>
+                                    <mat-error *ngIf="this.firstFormGroup.controls.address.hasError('required')">
+                                        Required*
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div>
+                                <button mdbRipple type="button" class="btn my-2" (click)="clickNext(0)"
+                                    style="color:#fff;background-color:#3f51b5" mat-button matStepperNext>Next</button>
+
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="secondFormGroup" label="Budget">
+                        <form [formGroup]="secondFormGroup">
+                            <mat-form-field appearance="outline" floatLabel="always" style="width:150px;">
+                                <mat-label>Amount</mat-label>
+                                <input matInput type="number" maxlength="8" formControlName="budget" placeholder="0"
+                                    required>
+                                <span matSuffix>&nbsp;PKR</span>
+                                <mat-error *ngIf="this.secondFormGroup.controls.budget.hasError('required')">
+                                    Required*
+                                </mat-error>
+
+                                <mat-error *ngIf="this.secondFormGroup.controls.budget.hasError('maxLength')">
+                                    Length must be less than 5 digits
+                                </mat-error>
+                            </mat-form-field>
+                            <div>
+                                <button mdbRipple type="button" class="btn my-2" (click)="clickNext(1)"
+                                    style="color:#fff;background-color:#3f51b5" mat-button matStepperNext>Next</button>
+
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="thirdFormGroup" label="Requirements">
+                        <form [formGroup]="thirdFormGroup">
+                            <div class="d-flex flex-row justify-content-start flex-wrap">
+                                <mat-form-field appearance="outline" floatLabel="always"
+                                    style="width:150px;margin-right: 15px">
+                                    <mat-label>Guests</mat-label>
+                                    <input matInput type="number" maxlength="8" formControlName="capacity"
+                                        placeholder="400" required>
+                                    <span matSuffix>&nbsp;<i class="fas fa-users mr-1"></i></span>
+
+                                    <mat-error *ngIf="this.thirdFormGroup.controls.capacity.hasError('required')">
+                                        Required*
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" floatLabel="always" style="width:170px;">
+                                    <mat-label>Event date</mat-label>
+                                    <input matInput [matDatepicker]="picker" formControlName="date"
+                                        placeholder="23/12/2025" required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+
+                                    <mat-error *ngIf="this.thirdFormGroup.controls.date.hasError('required')">
+                                        Required*
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <button (click)="submitForm()" mdbRipple type="button" class="btn my-2"
+                                    style="color:#fff;background-color:#3f51b5" mat-button
+                                    matStepperNext>Submit</button>
+
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>Done</ng-template>
+
+                        <div *ngIf="loading; then thenBlockLoading else elseBlockLoading"></div>
+                        <ng-template #thenBlockLoading>
+                            <div class="loader-container">
+
+
+                                <div class="first circle"></div>
+                                <div class="second circle"></div>
+                                <div class="third circle"></div>
+
+                            </div>
+                        </ng-template>
+                        <ng-template #elseBlockLoading>
+                            <div *ngIf="!error; then thenBlockError else elseBlockError"></div>
+                            <ng-template #thenBlockError>
+                                <div class="text-center">
+                                    <img src="../../assets/images/others/success-booking.svg"
+                                        style="width:20%;margin: 10px 0px;" alt="success-booking" />
+                                    <p><span style="font-size: 18px;
+                                font-weight: 600;">Your request has been successfully created </span>✔️ <br>
+                                        <span style="font-weight: 400;
+                                font-size: 14px;
+                                color: grey;">Our team will contact you with booking confirmation and further
+                                            details.</span>
+                                    </p>
+                                </div>
+                            </ng-template>
+                            <ng-template #elseBlockError>
+                                <div class="text-center">
+                                    <img src="../../assets/images/others/error-booking.svg"
+                                        style="width:20%;margin: 10px 0px;" alt="error-booking" />
+                                    <p><span style="font-size: 18px;
+                                    font-weight: 600;">Oops! </span>
+                                        <br>
+                                        <span style="font-weight: 400;
+                                    font-size: 14px;
+                                    color: grey;">Something went wrong! Please try again.</span>
+                                    </p>
+                                </div>
+                            </ng-template>
+                        </ng-template>
+                    </mat-step>
+                </mat-stepper>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>

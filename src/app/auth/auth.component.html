@@ -1,0 +1,197 @@
+<!-- <!DOCTYPE html>
+<html lang="en"> -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page in HTML with CSS Code Example</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./auth.component.css">
+
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <div class="box-form">
+        <div class="left">
+            <div class="overlay">
+                <h1>Dwiin.</h1>
+                <p>Enjoy your wedding occasion with our perfect live streaming style. We provide you with a Perfect
+                    Venues to the precious moments of your life.</p>
+                <span>
+                    <p>Login with social media</p>
+
+                    <a href="#" class="facebook-icon"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#" class="google-icon"><i class="fa fa-google " aria-hidden="true"></i></a>
+                    <a href="#" class="twitter-icon"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </span>
+            </div>
+        </div>
+
+
+        <div *ngIf="showSignIn; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+
+            <div class="right">
+                <h3>Sign In</h3>
+
+                <!-- <div class="inputs">
+                    <input type="text" placeholder="user name">
+                    <br>
+                    <input type="password" placeholder="password">
+                </div> -->
+                <form [formGroup]="signInForm" class="example-form" (ngSubmit)="onSubmitSignIn()">
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" style="margin-top: 0px; padding: 0px;" formControlName="email"
+                            [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com">
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                        <mat-error
+                            *ngIf="signInForm.controls.email.hasError('email') && !signInForm.controls.email.hasError('required')">
+                            Please enter a valid email address
+                        </mat-error>
+                        <mat-error *ngIf="signInForm.controls.email.hasError('required')">
+                            Required*
+                        </mat-error>
+                    </mat-form-field>
+                    <div class="example-container">
+                        <mat-form-field class="example-full-width" appearance="standard">
+                            <mat-label>Password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" style="margin-top: 0px; padding: 0px;"
+                                formControlName="password" [errorStateMatcher]="matcher">
+                            <button type="button" style="    background: #fff;
+                        border-style: none;
+                       " mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="signInForm.controls.password.hasError('minlength')">
+                                Password must be atleast 6 characters
+                            </mat-error>
+                            <mat-error *ngIf="signInForm.controls.password.hasError('required')">
+                                Required*
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <br>
+                    <p>Don't have an account? <span class="hyper-link" (click)="setPage(false)">Create Your
+                            Account</span>
+                        it
+                        takes less than a
+                        minute</p>
+
+                    <div class="remember-me--forget-password">
+                        <!-- Angular -->
+                        <label>
+                            <input type="checkbox" name="item" checked />
+                            <span class="text-checkbox"> Remember me</span>
+                        </label>
+                        <p class="forget-password">Forget password?</p>
+                    </div>
+
+                    <br>
+                    <div class="flex-row-center pad-10">
+
+                        <button type="submit" [ngSwitch]="loading"
+                            [ngClass]="{'button flex-row-center': !loading, 'disabled-button flex-row-center': loading}">
+                            <div *ngSwitchCase="false">Login</div>
+                            <div *ngSwitchCase="true" class="progress-spinner">
+                                <mat-spinner [diameter]='22' [color]=''></mat-spinner>
+                            </div>
+                        </button>
+
+                    </div>
+                </form>
+
+            </div>
+
+        </ng-template>
+        <ng-template #elseBlock>
+            <div class="right">
+                <h3>Sign Up</h3>
+                <form class="example-form" [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUp()">
+                    <div class="flex-row-sb">
+                        <mat-form-field class="form-field-40 " appearance="standard">
+                            <mat-label>First Name</mat-label>
+                            <input matInput type="text" style="margin-top: 0px; padding: 0px;"
+                                formControlName="firstName" [errorStateMatcher]="matcher" placeholder="Andrew">
+                            <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                            <!-- <mat-error
+                                    *ngIf="signUpForm.controls.firstName.hasError('firstName') && !signUpForm.controls.firstName.hasError('required')">
+                                    Please enter a valid name
+                                </mat-error> -->
+                            <mat-error *ngIf="signUpForm.controls.firstName.hasError('required')">
+                                Required*
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="form-field-40" appearance="standard">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput type="text" style="margin-top: 0px; padding: 0px;"
+                                formControlName="lastName" [errorStateMatcher]="matcher" placeholder="Peterson">
+                            <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                            <!-- <mat-error
+                                    *ngIf="signUpForm.controls.lastName.hasError('email') && !email.hasError('required')">
+                                    Please enter a name
+                                </mat-error> -->
+                            <mat-error *ngIf="signUpForm.controls.lastName.hasError('required')">
+                                Required*
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+
+                    <mat-form-field class="example-full-width" appearance="standard">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" style="margin-top: 0px; padding: 0px;" formControlName="email"
+                            [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com">
+                        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                        <mat-error
+                            *ngIf="signUpForm.controls.email.hasError('email') && !signUpForm.controls.email.hasError('required')">
+                            Please enter a valid email address
+                        </mat-error>
+                        <mat-error *ngIf="signUpForm.controls.email.hasError('required')">
+                            Required*
+                        </mat-error>
+                    </mat-form-field>
+                    <div class="example-container">
+                        <mat-form-field class="example-full-width" appearance="standard">
+                            <mat-label>Password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" style="margin-top: 0px; padding: 0px;"
+                                formControlName="password" [errorStateMatcher]="matcher">
+                            <button style="    background: #fff;
+                        border-style: none;
+                       " mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="signUpForm.controls.password.hasError('minlength')">
+                                Password must be atleast 6 characters
+                            </mat-error>
+                            <mat-error *ngIf="signUpForm.controls.password.hasError('required')">
+                                Required*
+                            </mat-error>
+                        </mat-form-field>
+                        <div class="flex-row-center pad-10">
+                            <button type="submit" [ngSwitch]="loading"
+                                [ngClass]="{'button flex-row-center': !loading, 'disabled-button flex-row-center': loading}">
+                                <div *ngSwitchCase="false">Register</div>
+                                <div *ngSwitchCase="true" class="progress-spinner">
+                                    <mat-spinner [diameter]='22' [color]=''></mat-spinner>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </ng-template>
+    </div>
+    <!-- partial -->
+
+</body>
+
+<!-- </html> -->

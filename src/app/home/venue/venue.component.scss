@@ -1,0 +1,98 @@
+.example-tab-icon {
+  margin-right: 8px;
+}
+h2 {
+  width: 95%;
+  text-align: center;
+  border-bottom: 1px solid #000;
+  line-height: 0.1em;
+  margin: 60px 0 20px;
+}
+
+h2 span {
+  background: #fff;
+  padding: 0 10px;
+}
+ngb-rating {
+  color: #ffc107;
+  font-size: 30px;
+}
+::ng-deep .card-body {
+  padding-top: 0;
+}
+::ng-deep .card-title {
+  margin-bottom: 0.2rem;
+}
+.card-title:hover {
+  text-decoration: underline;
+}
+.card-custom {
+  cursor: pointer;
+}
+.card-custom:hover {
+  width: 105%;
+  height: 105%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+.card-area {
+  margin-bottom: 0.5rem;
+}
+.hand-icon {
+  color: green;
+  font-size: 18px;
+}
+.inline {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.rent-text {
+  color: green;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 3rem;
+  color: #d3d3d3;
+  font-size: 30px;
+}
+.full {
+  color: #ffc107;
+  font-size: 30px;
+}
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #ffc107;
+  font-size: 30px;
+}
+.card-desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .inline {
+    font-size: 13px;
+  }
+  .rent-text {
+    font-size: 14px;
+  }
+}
+
+::ng-deep .ngx-pagination .current {
+  padding: 0.1875rem 0.625rem;
+  background: #cc1d29 !important;
+  border-radius: 7px;
+  color: #fefefe;
+  cursor: default;
+}

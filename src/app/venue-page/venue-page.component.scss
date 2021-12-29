@@ -1,0 +1,147 @@
+.space-top {
+  margin-top: 140px;
+}
+
+.venue-name {
+  color: #a52c2cd1;
+  font-weight: bold;
+  // text-overflow: ellipsis;
+  // overflow: hidden;
+  // max-width: 85vh;
+  // width: 85vh;
+  // white-space: nowrap;
+}
+.book-now-container {
+  float: right;
+  position: absolute;
+  right: 0;
+}
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
+}
+.about {
+  color: #4e0000c2;
+  font-weight: 500;
+}
+
+.availability-btn {
+  color: #fff;
+  background-color: #ab0101d1;
+  border-color: #951d2285;
+}
+.availability-btn:hover {
+  color: #fff;
+  background-color: #cd1313;
+  border-color: #8b171e59;
+}
+.btn-color {
+  color: #fff;
+  // background-color: #a52c2c;
+
+  background-color: #cb0000;
+  border-color: #990007;
+}
+.btn-color:hover {
+  color: #fff;
+  background-color: #e90303;
+  border-color: #31010459;
+}
+tr {
+  background-color: #85000061;
+}
+.img-container {
+  display: inline-block;
+  position: relative;
+}
+
+.img-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0px 0px 40px 1px rgb(53, 52, 52) inset;
+}
+
+@media screen and (max-width: 576x) {
+  .space-top {
+    margin-top: 0px !important;
+  }
+}
+
+#arrowAnim {
+  width: 120px;
+  height: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0px 5px;
+}
+
+.arrow {
+  width: 10px;
+  height: 10px;
+  border: 12px solid;
+  border-color: #a72727 transparent transparent #a72727;
+  transform: rotate(135deg);
+}
+
+.arrowSliding {
+  position: absolute;
+  -webkit-animation: slide 4s linear infinite;
+  animation: slide 4s linear infinite;
+}
+
+.delay1 {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+.delay2 {
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+}
+.delay3 {
+  -webkit-animation-delay: 3s;
+  animation-delay: 3s;
+}
+
+@-webkit-keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translateX(-3vw);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(-10vw);
+  }
+  80% {
+    opacity: 1;
+    transform: translateX(3vw);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(0vw);
+  }
+}
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translateX(-3vw);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(-1vw);
+  }
+  80% {
+    opacity: 1;
+    transform: translateX(3vw);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(1vw);
+  }
+}

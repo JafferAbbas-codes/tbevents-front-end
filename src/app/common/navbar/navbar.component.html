@@ -1,0 +1,101 @@
+<div class="fixed-top">
+    <mat-toolbar class="nav-bar mat-elevation-z2 py-4"
+        style="background-color: #4a0000 ; border-bottom: 2px solid #D61D28;">
+
+        <a routerLink="/">
+            <img class="logo ml-3" src="../../assets/images/others/logo2.png" alt="logo">
+        </a>
+
+        <span class="example-spacer"></span>
+
+        <div *ngIf="isLoggedIn; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+            <!-- <div class="login-button-alignment"> -->
+            <div class="login-container">
+
+                <a style="color:inherit">
+
+                    <div class="login-button-alignment">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" class="login-icon md-12">
+                            account_circle
+                        </mat-icon>
+                        <mat-label routerLinkActive="active" class="login-text">{{firstName}}</mat-label>
+                    </div>
+                </a>
+                <i class="fas fa-power-off" style="align-self: center;
+                padding-left: 12px;
+                color: #ad7c7c;cursor: pointer;" (click)="logOut()"></i>
+
+            </div>
+
+            <!-- </div> -->
+        </ng-template>
+
+        <ng-template #elseBlock>
+            <!-- <div class="login-button-alignment"> -->
+            <a class="login-container" style="color:inherit" routerLink="/login">
+                <div class="login-button-alignment">
+                    <div>
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" class="login-icon md-12">
+                            account_circle
+                        </mat-icon>
+                    </div>
+                    <mat-label routerLinkActive="active" class="login-text">LOGIN</mat-label>
+                </div>
+            </a>
+            <!-- </div> -->
+
+        </ng-template>
+
+    </mat-toolbar>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" (click)="leftAligned.toggle()"
+                aria-controls="navbarLeftAlignExample" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarLeftAlignExample" mdbCollapse #leftAligned="mdbCollapse">
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mx-4 mb-lg-0">
+                    <li [ngClass]="window.location.href=='http://localhost:4200/home' ? 'active nav-item navbar-tab-item' : 'nav-item navbar-tab-item'"
+                        class="nav-item navbar-tab-item">
+                        <a class="nav-link" aria-current="page" href="home">HOME</a>
+                    </li>
+                    <li
+                        [ngClass]="window.location.href=='http://localhost:4200/search' ? 'active nav-item navbar-tab-item' : 'nav-item navbar-tab-item'">
+                        <a class="nav-link" aria-current="page" href="search">SEARCH</a>
+                    </li>
+                    <li
+                        [ngClass]="window.location.href=='http://localhost:4200/about' ? 'active nav-item navbar-tab-item' : 'nav-item navbar-tab-item'">
+                        <a class="nav-link" aria-current="page" href="about">ABOUT US</a>
+                    </li>
+                    <li
+                        [ngClass]="window.location.href=='http://localhost:4200/contact' ? 'active nav-item navbar-tab-item' : 'nav-item navbar-tab-item'">
+                        <a class="nav-link" aria-current="page" href="contact">CONTACT US</a>
+                    </li>
+                    <div *ngIf="isVendor; then thenBlock2"></div>
+                    <ng-template #thenBlock2>
+                        <li
+                            [ngClass]="window.location.href=='http://localhost:4200/bookings-dashboard' ? 'active nav-item navbar-tab-item' : 'nav-item navbar-tab-item'">
+                            <a class="nav-link" aria-current="page" href="bookings-dashboard">BOOKINGS</a>
+                        </li>
+                    </ng-template>
+
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li> -->
+                </ul>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+</div>

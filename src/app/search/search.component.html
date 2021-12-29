@@ -1,0 +1,214 @@
+<app-navbar></app-navbar>
+<!-- <app-carousel></app-carousel> -->
+<div class="top">
+    <div class="d-flex flex-row justify-content-center">
+        <h2 class="search-heading-margin" id="scroll"><span>Search Banquets</span></h2>
+
+    </div>
+
+    <div class="container py-4">
+
+
+
+        <div class="row">
+
+            <div
+                class="col-lg-6 col-d-flex  p-1 p-lg-3 justify-content-start align-items-start text-center text-lg-left">
+                <div class="my-1">
+                    <h4 class="text-center">Location</h4>
+                    <form class="example-form my-1 py-2 py-lg-4" [formGroup]="formGroupToggleSwitch"
+                        (ngSubmit)="onFormSubmitToggleSwitch()" ngNativeValidate>
+                        <!-- <mat-slide-toggle formControlName="enableWifi">Enable Wifi</mat-slide-toggle> -->
+                        <div class="d-flex flex-row justify-content-center align-items-center">
+                            <!-- <p>Search by</p> -->
+                            <div
+                                [ngClass]="{'d-flex selected-toggle': !formGroupToggleSwitch.controls.nearByVenues.value, 'd-flex disabled-toggle': formGroupToggleSwitch.controls.nearByVenues.value}">
+                                <span class="material-icons mr-1" style="font-size: 30px;">
+                                    location_city
+                                </span>
+                                <span class="toggle-text mr-3">Area</span>
+                            </div>
+
+
+                            <mat-slide-toggle formControlName="nearByVenues">
+                                <div
+                                    [ngClass]="{'d-flex selected-toggle': formGroupToggleSwitch.controls.nearByVenues.value, 'd-flex disabled-toggle': !formGroupToggleSwitch.controls.nearByVenues.value}">
+                                    <span class="material-icons mr-1 ml-2" style="font-size: 28x;">
+                                        my_location
+                                    </span>
+                                    <span class="toggle-text">
+                                        Current location
+                                    </span>
+                                </div>
+                            </mat-slide-toggle>
+                        </div>
+                    </form>
+                    <form class="example-form my-1 py-2 py-lg-3">
+                        <div *ngIf="!formGroupToggleSwitch.controls.nearByVenues.value; then thenBlock else elseBlock">
+                        </div>
+                        <!-- <p>Form Group Status: {{formGroupToggleSwitch.controls.nearByVenues.value}}</p>
+                        <button (click)="onFormSubmitToggleSwitch()">temp</button> -->
+                        <ng-template #thenBlock>
+                            <div class="d-flex flex-row justify-content-center">
+                                <mat-form-field class="input-box px-2" appearance="outline">
+                                    <i class="fas fa-globe input-icon-size" matPrefix></i>
+                                    <mat-label>City</mat-label>
+                                    <input type="text" placeholder="Pick one" aria-label="City" matInput
+                                        [formControl]="cityControl" [matAutocomplete]="auto">
+                                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                        <mat-option *ngFor="let cityOption of filteredCityOptions | async"
+                                            [value]="cityOption">
+                                            {{cityOption}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                    <mat-error *ngIf="cityControl.hasError('required')">
+                                        Required*
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="input-box" appearance="outline"
+                                    matAutocompleteConnectedTo="areaOptions">
+                                    <i class="fas fa-city input-icon-size" matPrefix></i>
+                                    <!-- <mat-icon matPrefix style="margin-right: 10px;">people</mat-icon> -->
+                                    <mat-label>Area</mat-label>
+                                    <input type="text" placeholder="Pick one" aria-label="Area" matInput
+                                        [formControl]="areaControl" [matAutocomplete]="autoGroup">
+                                    <mat-autocomplete autoActiveFirstOption #autoGroup="matAutocomplete">
+                                        <mat-option *ngFor="let areaOption of filteredAreaOptions | async"
+                                            [value]="areaOption">
+                                            {{areaOption}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                    <mat-error *ngIf="areaControl.hasError('required')">
+                                        Required*
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        </ng-template>
+                        <ng-template #elseBlock>
+                            <div class="d-flex flex-row justify-content-center">
+                                <mat-form-field class="input-box px-2" appearance="outline">
+                                    <span matPrefix class="material-icons">
+                                        my_location
+                                    </span>
+                                    <!-- <mat-icon matPrefix style="margin-right: 10px;">people</mat-icon> -->
+                                    <mat-label>Radius | +km</mat-label>
+                                    <input type="number" placeholder="Ex. 1 km" aria-label="Radius" matInput
+                                        [formControl]="radiusControl">
+                                    <mat-error *ngIf="radiusControl.hasError('required')">
+                                        Required*
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                        </ng-template>
+
+
+                    </form>
+                </div>
+
+
+            </div>
+            <div
+                class="col-lg-6 py-3 p-lg-3 col-d-flex justify-content-start text-center align-items-start text-lg-left">
+                <!--Grid row-->
+                <div class="my-1">
+                    <h4 class="text-center">Price</h4>
+                    <div class="py-3 py-lg-2">
+                        <ngx-slider [(value)]="minPrice" [(highValue)]="maxPrice" [options]="priceOptions">
+                        </ngx-slider>
+                    </div>
+
+                </div>
+                <div class="my-1">
+                    <h4 class="text-center">Capacity</h4>
+                    <div class="py-3 py-lg-2">
+                        <ngx-slider [(value)]="minCap" [(highValue)]="maxCap" [options]="capacityOptions"></ngx-slider>
+
+                    </div>
+                </div>
+
+                <!--Grid row-->
+            </div>
+            <div class="d-flex flex-row justify-content-center py-3">
+
+                <button id="scroll1" type="submit" (click)="onSubmit()" [ngSwitch]="loading"
+                    [ngClass]="{'button d-flex flex-row justify-content-center align-items-center': !loading, 'disabled-button d-flex flex-row justify-content-center align-items-center': loading}">
+                    <div class="d-flex" *ngSwitchCase="false">
+                        <span class="material-icons mr-1 mt-1"> search</span> Search for Wedding Venues
+                    </div>
+                    <div *ngSwitchCase="true" class="progress-spinner">
+                        <mat-spinner [diameter]='22' [color]=''></mat-spinner>
+                    </div>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="d-flex flex-row justify-content-center align-items-center">
+        <h2 class="search-result-margin"><span>Search Results</span></h2>
+
+    </div>
+    <div class="container-sm">
+        <div class="my-2 py-4">
+            <div
+                class="row row-cols-xl-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 gy-4 gx-3 align-items-center">
+                <div class="col" *ngFor="let venue of allVenues| paginate: { 
+                itemsPerPage: pageSize,
+                currentPage: page,
+                totalItems: allVenues.length } ; let i=index" [attr.data-index]="i">
+
+                    <div class="card h-100 card-custom" [routerLink]="['/venue',venue.id]" [state]="{ id:venue.id }">
+                        <img src="../../assets/images/hall/{{venue.coverImage}}" class="card-img-top" alt="..." />
+                        <div class="card-body">
+
+                            <ng-template #t let-fill="fill">
+                                <span class="star" [class.full]="fill === 100">
+                                    <span class="half" [style.width.%]="fill">★</span>★
+                                </span>
+                            </ng-template>
+
+                            <ngb-rating [rate]="venue.avg_rating? venue.avg_rating : 4.5" [starTemplate]="t"
+                                [readonly]="true" [max]="5"></ngb-rating>
+
+                            <h5 class="card-title">{{venue.name}}</h5>
+                            <p class="card-area"><i style="color:#d34a3e" class="fas fa-map-marker-alt"></i> <span
+                                    class="text-muted pl-1">{{venue.area}}</span></p>
+                            <p class="card-text card-desc">
+                                {{venue.desc}}
+                            </p>
+                            <div class="inline">
+                                <div>
+                                    <i class="fas fa-hand-holding-usd hand-icon"></i> Starting from
+                                    <span class="rent-text">{{venue.min_rent}}/-</span>
+                                </div>
+                                <div>
+                                    <i style="color:#845422" class="fas fa-users "></i> {{venue.min_cap}} -
+                                    {{venue.max_cap}}
+                                </div>
+
+                            </div>
+
+                            <!-- <p class="card-area"><i class="fas fa-users"></i> {{venue.min_cap}} - {{venue.max_cap}}</p> -->
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="d-flex justify-content-center my-5">
+                <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true"
+                    (pageChange)="handlePageChange($event)" [maxSize]="4" [directionLinks]="true"
+                    screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                    screenReaderCurrentLabel="You're on page"></pagination-controls>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-footer></app-footer>

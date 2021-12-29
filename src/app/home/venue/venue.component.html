@@ -1,0 +1,67 @@
+<div class="d-flex flex-row justify-content-center">
+    <h2 id="scroll"><span>Venues</span></h2>
+
+</div>
+
+<div class="container-sm mt-4">
+    <div class="py-4">
+        <div class="row row-cols-xl-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 gy-4 gx-3 align-items-center">
+            <div class="col" *ngFor="let venue of allVenues| paginate: { 
+            itemsPerPage: pageSize,
+            currentPage: page,
+            totalItems: allVenues.length } ; let i=index" [attr.data-index]="i">
+
+                <div class="card h-100 card-custom" [routerLink]="['/venue',venue.id]"
+                    [state]="{ id:venue.id }">
+                    <!-- //(page-1) * records_per_page; i < (page * records_per_page); i++ -->
+                    <img 
+                    src="../../../assets/images/hall/{{venue.coverImage}}"
+
+                    class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <!-- <ngb-rating [max]="5" [(rate)]="starRating" [readonly]="true"></ngb-rating> -->
+
+                        <ng-template #t let-fill="fill">
+                            <span class="star" [class.full]="fill === 100">
+                                <span class="half" [style.width.%]="fill">★</span>★
+                            </span>
+                        </ng-template>
+
+                        <ngb-rating [rate]="venue.avg_rating? venue.avg_rating : 4.5" [starTemplate]="t"
+                            [readonly]="true" [max]="5">
+                        </ngb-rating>
+
+                        <h5 class="card-title text-underline-hover">{{venue.name}}</h5>
+                        <p class="card-area"><i style="color:#d34a3e" class="fas fa-map-marker-alt"></i> <span
+                                class="text-muted pl-1">{{venue.area}}</span></p>
+                                <p class="card-text card-desc">
+                                    {{venue.desc}}
+                                </p>
+                        <div class="inline">
+                            <div>
+                                <i class="fas fa-hand-holding-usd hand-icon"></i> Starting from
+                                <span class="rent-text">{{venue.min_rent}}/-</span>
+                            </div>
+                            <div>
+                                <i style="color:#845422" class="fas fa-users "></i> {{venue.min_cap}} -
+                                {{venue.max_cap}}
+                            </div>
+
+                        </div>
+
+                        <!-- <p class="card-area"><i class="fas fa-users"></i> {{venue.min_cap}} - {{venue.max_cap}}</p> -->
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="d-flex justify-content-center my-5">
+            <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true"
+                (pageChange)="handlePageChange($event)" [maxSize]="4" [directionLinks]="true"
+                screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+                screenReaderCurrentLabel="You're on page"></pagination-controls>
+
+        </div>
+    </div>
+</div>
